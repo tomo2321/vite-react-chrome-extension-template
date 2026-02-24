@@ -1,9 +1,0 @@
-{
-  "manifest_version": 3,
-  "name": "Vite + React Chrome Extension",
-  "description": "Chrome extension built with Vite and React.",
-  "version": "0.0.0",
-  "action": {
-    "default_popup": "index.html"
-  }
-}
