@@ -11,6 +11,8 @@
     "lint": "biome lint .",
     "format": "biome format --write .",
     "check": "biome check --write .",
+    "lint:md": "biome lint . && markdownlint-cli2 '**/*.md'",
+    "format:md": "biome format --write . && markdownlint-cli2 --fix '**/*.md'",
     "preview": "vite preview",
     "prepare": "husky",
     "generate-icon": "tsx scripts/generate-icon.ts"
@@ -39,14 +41,18 @@
     "commander": "^14.0.3",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.7",
+    "markdownlint-cli2": "^0.21.0",
     "sharp": "^0.34.5",
     "tsx": "^4.21.0",
     "typescript": "~5.9.3",
     "vite": "^7.3.1"
   },
   "lint-staged": {
-    "*.{js,ts,jsx,tsx,json,css}": [
+    "*.{js,ts,jsx,tsx,json,css,md}": [
       "biome check --write"
+    ],
+    "*.md": [
+      "markdownlint-cli2 --fix"
     ]
   },
   "volta": {

@@ -1,0 +1,20 @@
+# markdownlint-cli2 configuration
+# https://github.com/DavidAnson/markdownlint-cli2?tab=readme-ov-file#configuration
+
+config:
+  # Default: enable all rules
+  default: true
+
+  # MD013: Line length - disable (too strict for general use)
+  MD013: false
+
+  # MD033: Inline HTML - allow in markdown
+  MD033: false
+
+  # MD041: First line in a file should be a top-level heading
+  MD041: true
+
+globs:
+  - "**/*.md"
+  - "!**/node_modules"
+  - "!**/dist"
