@@ -19,5 +19,12 @@ export default defineManifest({
     // },
     default_popup: "index.html",
   },
+  // Required during development to enable HMR (Hot Module Replacement) via the Vite dev server
+  // (localhost:5173). @crxjs/vite-plugin connects to the dev server through a content script,
+  // and without this permission the connection is refused.
+  //
+  // NOTE: Remove or comment out this before publishing the extension.
+  // Access to localhost is not needed in production and may cause the Chrome Web Store review
+  // to reject the submission for declaring an unnecessary permission.
   host_permissions: ["http://localhost:5173/*"],
 });
