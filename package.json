@@ -13,7 +13,6 @@
     "check": "biome check --write .",
     "lint:md": "biome lint . && markdownlint-cli2 '**/*.md'",
     "format:md": "biome format --write . && markdownlint-cli2 --fix '**/*.md'",
-    "preview": "vite preview",
     "prepare": "husky",
     "generate-icon": "tsx scripts/generate-icon.ts"
   },
