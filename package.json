@@ -12,7 +12,8 @@
     "format": "biome format --write .",
     "check": "biome check --write .",
     "preview": "vite preview",
-    "prepare": "husky"
+    "prepare": "husky",
+    "generate-icon": "tsx scripts/generate-icon.ts"
   },
   "keywords": [
     "vite",
@@ -33,9 +34,13 @@
     "@types/node": "^24.10.1",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
+    "@types/sharp": "^0.32.0",
     "@vitejs/plugin-react": "^5.1.1",
+    "commander": "^14.0.3",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.7",
+    "sharp": "^0.34.5",
+    "tsx": "^4.21.0",
     "typescript": "~5.9.3",
     "vite": "^7.3.1"
   },
