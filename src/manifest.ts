@@ -40,6 +40,10 @@ export default defineManifest((env) => ({
     ...(Object.keys(actionIcons).length > 0 && { default_icon: actionIcons }),
     default_popup: "src/pages/popup/index.html",
   },
+  side_panel: {
+    default_path: "src/pages/sidepanel/index.html",
+  },
+  permissions: ["sidePanel"],
   // Only include `host_permissions` in development to allow HMR via the Vite dev server.
   // Connecting to localhost is not needed in production and may cause the Chrome Web Store
   // review to reject the submission for declaring an unnecessary permission.
