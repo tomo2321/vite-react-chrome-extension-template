@@ -1,22 +1,41 @@
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import { defineManifest } from "@crxjs/vite-plugin";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const iconsDir = path.resolve(__dirname, "../public/icons");
+
+function iconPath(size: number): string {
+  return `icons/icon${size}.png`;
+}
+
+function hasIcon(size: number): boolean {
+  return fs.existsSync(path.join(iconsDir, `icon${size}.png`));
+}
+
+const appIcons = ([16, 48, 128] as const satisfies readonly number[]).reduce<
+  Record<number, string>
+>((acc, size) => {
+  if (hasIcon(size)) acc[size] = iconPath(size);
+  return acc;
+}, {});
+
+const actionIcons = ([16, 32] as const satisfies readonly number[]).reduce<
+  Record<number, string>
+>((acc, size) => {
+  if (hasIcon(size)) acc[size] = iconPath(size);
+  return acc;
+}, {});
 
 export default defineManifest((env) => ({
   manifest_version: 3,
   name: "Vite + React Chrome Extension",
   description: "Chrome extension built with Vite and React.",
   version: "0.0.0",
-  // Uncomment the following block once you have generated the icon files.
-  // icons: {
-  //   16: "icons/icon16.png",
-  //   48: "icons/icon48.png",
-  //   128: "icons/icon128.png",
-  // },
+  ...(Object.keys(appIcons).length > 0 && { icons: appIcons }),
   action: {
-    // Uncomment the following block once you have generated the icon files.
-    // default_icon: {
-    //   16: "icons/icon16.png",
-    //   32: "icons/icon32.png",
-    // },
+    ...(Object.keys(actionIcons).length > 0 && { default_icon: actionIcons }),
     default_popup: "index.html",
   },
   // Required during development to enable HMR (Hot Module Replacement) via the Vite dev server
