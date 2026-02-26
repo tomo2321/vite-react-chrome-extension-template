@@ -38,7 +38,7 @@ export default defineManifest((env) => ({
   action: {
     // Only include `default_icon` if at least one action icon file exists in public/icons/
     ...(Object.keys(actionIcons).length > 0 && { default_icon: actionIcons }),
-    default_popup: "index.html",
+    default_popup: "src/pages/popup/index.html",
   },
   // Only include `host_permissions` in development to allow HMR via the Vite dev server.
   // Connecting to localhost is not needed in production and may cause the Chrome Web Store
