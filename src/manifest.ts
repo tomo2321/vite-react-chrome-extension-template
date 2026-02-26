@@ -1,9 +1,6 @@
 import { defineManifest } from "@crxjs/vite-plugin";
 
-// Set PUBLISH=true when building for Chrome Web Store to omit dev-only permissions.
-const isPublish = process.env.PUBLISH === "true";
-
-export default defineManifest({
+export default defineManifest((env) => ({
   manifest_version: 3,
   name: "Vite + React Chrome Extension",
   description: "Chrome extension built with Vite and React.",
@@ -26,10 +23,10 @@ export default defineManifest({
   // (localhost:5173). @crxjs/vite-plugin connects to the dev server through a content script,
   // and without this permission the connection is refused.
   //
-  // Omitted automatically when building with `pnpm run publish` (PUBLISH=true).
+  // Included automatically only in development mode (`vite dev`).
   // Access to localhost is not needed in production and may cause the Chrome Web Store review
   // to reject the submission for declaring an unnecessary permission.
-  ...(!isPublish && {
+  ...(env.mode === "development" && {
     host_permissions: ["http://localhost:5173/*"],
   }),
-});
+}));
