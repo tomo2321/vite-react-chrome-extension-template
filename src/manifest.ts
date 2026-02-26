@@ -33,18 +33,16 @@ export default defineManifest((env) => ({
   name: "Vite + React Chrome Extension",
   description: "Chrome extension built with Vite and React.",
   version: "0.0.0",
+  // Only include `icons` if at least one icon file exists in public/icons/
   ...(Object.keys(appIcons).length > 0 && { icons: appIcons }),
   action: {
+    // Only include `default_icon` if at least one action icon file exists in public/icons/
     ...(Object.keys(actionIcons).length > 0 && { default_icon: actionIcons }),
     default_popup: "index.html",
   },
-  // Required during development to enable HMR (Hot Module Replacement) via the Vite dev server
-  // (localhost:5173). @crxjs/vite-plugin connects to the dev server through a content script,
-  // and without this permission the connection is refused.
-  //
-  // Included automatically only in development mode (`vite dev`).
-  // Access to localhost is not needed in production and may cause the Chrome Web Store review
-  // to reject the submission for declaring an unnecessary permission.
+  // Only include `host_permissions` in development to allow HMR via the Vite dev server.
+  // Connecting to localhost is not needed in production and may cause the Chrome Web Store
+  // review to reject the submission for declaring an unnecessary permission.
   ...(env.mode === "development" && {
     host_permissions: ["http://localhost:5173/*"],
   }),
