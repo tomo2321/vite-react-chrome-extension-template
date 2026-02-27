@@ -34,6 +34,7 @@ const actionIcons = ([16, 32] as const satisfies readonly number[]).reduce<
  */
 const features = {
   action: true,
+  background: true,
   side_panel: true,
 };
 
@@ -61,6 +62,13 @@ export default defineManifest((env) => ({
       // Only include `default_icon` if at least one action icon file exists in public/icons/
       ...(Object.keys(actionIcons).length > 0 && { default_icon: actionIcons }),
       default_popup: "src/pages/popup/index.html",
+    },
+  }),
+  // Only include `background` if the feature flag is enabled
+  ...(features.background && {
+    background: {
+      service_worker: "src/background/index.ts",
+      type: "module",
     },
   }),
   // Only include `side_panel` if the feature flag is enabled
