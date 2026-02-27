@@ -5,7 +5,10 @@
     "useDefineForClassFields": true,
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
     "module": "ESNext",
-    "types": ["vite/client"],
+    /* Explicitly listing @types packages to include as global type declarations.
+       When "types" is specified, only the listed packages are included —
+       all other @types/* packages are excluded automatically. */
+    "types": ["vite/client", "chrome"],
     "skipLibCheck": true,
 
     /* Bundler mode */
