@@ -28,11 +28,12 @@ const actionIcons = buildIcons([16, 32]);
  * Feature flags to control which optional sections are included in the manifest.
  * Set each flag to `true` to include the section, or `false` to omit it.
  */
-const features = {
+export const features = {
   action: true,
   background: true,
   content_scripts: true,
   side_panel: true,
+  devtools: true,
 };
 
 /**
@@ -47,6 +48,7 @@ const permissions: string[] = [
   // features.background permissions: add entries here when needed
   // features.content_scripts permissions: add entries here when needed
   ...(features.side_panel ? ["sidePanel"] : []),
+  // features.devtools permissions: add entries here when needed
 ];
 
 export default defineManifest((env) => ({
@@ -87,6 +89,10 @@ export default defineManifest((env) => ({
     side_panel: {
       default_path: "src/pages/sidepanel/index.html",
     },
+  }),
+  // Only include `devtools_page` if the feature flag is enabled
+  ...(features.devtools && {
+    devtools_page: "src/pages/devtools/index.html",
   }),
   permissions,
   // Only include `host_permissions` in development to allow HMR via the Vite dev server.
