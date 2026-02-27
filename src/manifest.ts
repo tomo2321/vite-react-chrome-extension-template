@@ -31,6 +31,7 @@ const actionIcons = buildIcons([16, 32]);
 const features = {
   action: true,
   background: true,
+  content_scripts: true,
   side_panel: true,
 };
 
@@ -44,6 +45,7 @@ const features = {
 const permissions: string[] = [
   // features.action permissions: add entries here when needed
   // features.background permissions: add entries here when needed
+  // features.content_scripts permissions: add entries here when needed
   ...(features.side_panel ? ["sidePanel"] : []),
 ];
 
@@ -68,6 +70,17 @@ export default defineManifest((env) => ({
       service_worker: "src/background/index.ts",
       type: "module",
     },
+  }),
+  // Only include `content_scripts` if the feature flag is enabled
+  ...(features.content_scripts && {
+    content_scripts: [
+      {
+        matches: ["https://example.com/*"],
+        js: ["src/content/example.com/index.ts"],
+        // No `css` key needed: CRXJS automatically injects CSS imported in the JS file (e.g. `import "./style.css"`).
+        // Listing CSS here separately causes a "Could not load css" error.
+      },
+    ],
   }),
   // Only include `side_panel` if the feature flag is enabled
   ...(features.side_panel && {
