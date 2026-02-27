@@ -14,19 +14,15 @@ function hasIcon(size: number): boolean {
   return fs.existsSync(path.join(iconsDir, `icon${size}.png`));
 }
 
-const appIcons = ([16, 48, 128] as const satisfies readonly number[]).reduce<
-  Record<number, string>
->((acc, size) => {
-  if (hasIcon(size)) acc[size] = iconPath(size);
-  return acc;
-}, {});
+function buildIcons(sizes: readonly number[]): Record<number, string> {
+  return sizes.reduce<Record<number, string>>((acc, size) => {
+    if (hasIcon(size)) acc[size] = iconPath(size);
+    return acc;
+  }, {});
+}
 
-const actionIcons = ([16, 32] as const satisfies readonly number[]).reduce<
-  Record<number, string>
->((acc, size) => {
-  if (hasIcon(size)) acc[size] = iconPath(size);
-  return acc;
-}, {});
+const appIcons = buildIcons([16, 48, 128]);
+const actionIcons = buildIcons([16, 32]);
 
 /**
  * Feature flags to control which optional sections are included in the manifest.
@@ -45,9 +41,11 @@ const features = {
  *
  * @see {@link https://developer.chrome.com/docs/extensions/reference/permissions-list}
  */
-const permissions = [features.side_panel ? "sidePanel" : undefined].filter(
-  (p) => p !== undefined,
-);
+const permissions: string[] = [
+  // features.action permissions: add entries here when needed
+  // features.background permissions: add entries here when needed
+  ...(features.side_panel ? ["sidePanel"] : []),
+];
 
 export default defineManifest((env) => ({
   manifest_version: 3,
