@@ -33,6 +33,7 @@ export const features = {
   background: true,
   content_scripts: true,
   side_panel: true,
+  options: true,
   devtools: true,
 };
 
@@ -48,6 +49,7 @@ const permissions: string[] = [
   // features.background permissions: add entries here when needed
   // features.content_scripts permissions: add entries here when needed
   ...(features.side_panel ? ["sidePanel"] : []),
+  ...(features.options ? ["storage"] : []),
   // features.devtools permissions: add entries here when needed
 ];
 
@@ -88,6 +90,13 @@ export default defineManifest((env) => ({
   ...(features.side_panel && {
     side_panel: {
       default_path: "src/pages/sidepanel/index.html",
+    },
+  }),
+  // Only include `options_ui` if the feature flag is enabled
+  ...(features.options && {
+    options_ui: {
+      page: "src/pages/options/index.html",
+      open_in_tab: false,
     },
   }),
   // Only include `devtools_page` if the feature flag is enabled
