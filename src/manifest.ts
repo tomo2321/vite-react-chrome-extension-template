@@ -44,14 +44,16 @@ export const features = {
  *
  * @see {@link https://developer.chrome.com/docs/extensions/reference/permissions-list}
  */
-const permissions: string[] = [
-  // features.action permissions: add entries here when needed
-  // features.background permissions: add entries here when needed
-  // features.content_scripts permissions: add entries here when needed
-  ...(features.side_panel ? ["sidePanel"] : []),
-  ...(features.options ? ["storage"] : []),
-  // features.devtools permissions: add entries here when needed
-];
+const permissions: string[] = Array.from(
+  new Set([
+    // features.action permissions: add entries here when needed
+    // features.background permissions: add entries here when needed
+    // features.content_scripts permissions: add entries here when needed
+    ...(features.side_panel ? ["sidePanel"] : []),
+    ...(features.options ? ["storage"] : []),
+    // features.devtools permissions: add entries here when needed
+  ]),
+);
 
 export default defineManifest((env) => ({
   manifest_version: 3,
