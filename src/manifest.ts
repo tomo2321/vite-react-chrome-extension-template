@@ -25,6 +25,38 @@ const appIcons = buildIcons([16, 48, 128]);
 const actionIcons = buildIcons([16, 32]);
 
 /**
+ * Available `run_at` values for content scripts.
+ *
+ * - `document_start` : Injected after any CSS files from the `css` array, but before any other DOM is
+ *                      constructed or any other script is run (earliest).
+ * - `document_end`   : Injected immediately after the DOM is complete, but before subresources like
+ *                      images and frames have loaded.
+ * - `document_idle`  : The browser chooses a time between `document_end` and immediately after
+ *                      `window.onload` fires (default). Optimized for page load speed.
+ *                      Content scripts at this timing do not need to listen for `window.onload`
+ *                      — they are guaranteed to run after the DOM is complete.
+ *
+ * @see {@link https://developer.chrome.com/docs/extensions/reference/api/extensionTypes#type-RunAt}
+ */
+export const runAt = {
+  /**
+   * Injected after any CSS files from the `css` array, but before any other DOM is constructed
+   * or any other script is run — use for style overrides or early DOM manipulation.
+   */
+  document_start: "document_start",
+  /**
+   * Injected immediately after the DOM is complete, but before subresources like images and
+   * frames have loaded — use when you need the DOM ready but don't want to wait for all assets.
+   */
+  document_end: "document_end",
+  /**
+   * The browser chooses a time between `document_end` and right after `window.onload` fires
+   * (default). Guaranteed to run after the DOM is complete; optimized for page load speed.
+   */
+  document_idle: "document_idle",
+} as const;
+
+/**
  * Feature flags to control which optional sections are included in the manifest.
  * Set each flag to `true` to include the section, or `false` to omit it.
  */
@@ -83,6 +115,8 @@ export default defineManifest((env) => ({
       {
         matches: ["https://example.com/*"],
         js: ["src/content/example.com/index.ts"],
+        // Change `run_at` to `runAt.document_start` or `runAt.document_end` if earlier injection is needed.
+        run_at: runAt.document_idle,
         // No `css` key needed: CRXJS automatically injects CSS imported in the JS file (e.g. `import "./style.css"`).
         // Listing CSS here separately causes a "Could not load css" error.
       },
