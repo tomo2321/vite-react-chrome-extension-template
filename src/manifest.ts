@@ -120,6 +120,35 @@ export default defineManifest((env) => ({
         // No `css` key needed: CRXJS automatically injects CSS imported in the JS file (e.g. `import "./style.css"`).
         // Listing CSS here separately causes a "Could not load css" error.
       },
+      {
+        matches: ["https://www.yahoo.co.jp/"],
+        js: ["src/content/apps/floating/index.tsx"],
+        run_at: runAt.document_idle,
+      },
+    ],
+  }),
+  // Only include `web_accessible_resources` if content scripts are enabled.
+  // These resources are requested by the host page (not the extension itself), which is
+  // only the case when a content script injects DOM that references extension assets.
+  // Extension-internal pages (popup, options, sidepanel, devtools) share the same origin
+  // and are never subject to this restriction; background service workers are also exempt.
+  //
+  // CRXJS auto-registration note:
+  // - public/ files (e.g. vite.svg) are NOT imported by JS, so CRXJS cannot detect them
+  //   and they must be listed here manually.
+  // - src/assets/ files (e.g. react.svg) ARE imported by JS and get a content-hashed
+  //   path at build time; CRXJS detects those imports and auto-registers them, so they
+  //   do NOT need to appear here.
+  ...(features.content_scripts && {
+    web_accessible_resources: [
+      {
+        resources: ["vite.svg"],
+        // NOTE: `<all_urls>` is used here for simplicity as a template sample.
+        // In a real extension, scope this to only the pages where your content
+        // script is injected (e.g. ["https://www.yahoo.co.jp/"]) to minimise
+        // the attack surface exposed to third-party pages.
+        matches: ["<all_urls>"],
+      },
     ],
   }),
   // Only include `side_panel` if the feature flag is enabled
