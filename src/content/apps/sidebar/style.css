@@ -1,0 +1,55 @@
+/*
+Tailwind CSS for the Shadow DOM-based sidebar content script.
+This file is imported with the `?inline` suffix in index.tsx, which loads
+the processed CSS as a plain string instead of appending it to the host
+page's <head>. The string is then injected into the Shadow Root via
+adoptedStyleSheets, so Tailwind utility classes are scoped to the Shadow
+DOM and do not leak into or conflict with the host page's styles.
+
+NOTE: Importing Tailwind in shared/index.css would NOT work here — styles
+added to the host document's <head> cannot penetrate a Shadow Root boundary.
+
+─────────────────────────────────────────────────────────────────────────────
+Injecting styles INTO the host page
+─────────────────────────────────────────────────────────────────────────────
+If you need to modify the host page's appearance (e.g. add margin, hide the
+scrollbar, or override existing styles), inject a <style> element directly
+into the host document from your content script:
+
+  // Option A — inline string (simplest)
+  const style = document.createElement("style");
+  style.textContent = `html { margin-right: 300px; }`;
+  document.head.appendChild(style);
+
+  // Option B — import a CSS file as a string and inject it
+  import hostStyles from "./host-page.css?inline";
+  const style = document.createElement("style");
+  style.textContent = hostStyles;
+  document.head.appendChild(style);
+
+Unlike Shadow DOM styles, these rules ARE affected by and can affect the host
+page's existing CSS, so use `!important` or specific selectors as needed.
+To remove the injected styles later, call `style.remove()`.
+
+─────────────────────────────────────────────────────────────────────────────
+CRXJS caveats
+─────────────────────────────────────────────────────────────────────────────
+1. Auto-injection of plain CSS imports
+   When a content script does `import "./style.css"` (without `?inline`),
+   CRXJS detects the import and automatically appends that stylesheet to the
+   host page's <head> at runtime. Do NOT also list it under the `css` key in
+   the manifest — doing so causes double injection and a
+   "Could not load css" build error.
+
+2. `?inline` bypasses CRXJS auto-injection (intentional here)
+   The `?inline` suffix tells Vite to treat the file as a plain string module.
+   CRXJS never sees it as a stylesheet asset, so it will NOT be auto-injected
+   into the host page. This is exactly what we want for Shadow DOM: we handle
+   injection manually via `adoptedStyleSheets`.
+
+3. web_accessible_resources
+   CSS files loaded via `?inline` are bundled as JS strings and do NOT need to
+   be listed in `web_accessible_resources`. Only files that the host page
+   fetches directly (e.g. images in public/) require that entry.
+*/
+@import "tailwindcss";

@@ -125,6 +125,11 @@ export default defineManifest((env) => ({
         js: ["src/content/apps/floating/index.tsx"],
         run_at: runAt.document_idle,
       },
+      {
+        matches: ["https://www.google.com/"],
+        js: ["src/content/apps/sidebar/index.tsx"],
+        run_at: runAt.document_idle,
+      },
     ],
   }),
   // Only include `web_accessible_resources` if content scripts are enabled.

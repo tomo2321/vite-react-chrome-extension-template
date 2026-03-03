@@ -1,3 +1,19 @@
+/*
+Tailwind CSS for extension pages like popup, options, sidepanel, etc.
+This file is imported by each page's main.tsx and injected into the document
+<head> as a normal stylesheet, so Tailwind utility classes are available
+throughout all extension UI pages.
+
+NOTE: This import does NOT reach Shadow DOM-based content scripts (e.g. the
+sidebar). Those components have their own style.css that is injected via
+adoptedStyleSheets directly into the Shadow Root.
+*/
+@import "tailwindcss";
+
+/* ──────────────────────
+   Extension page styles
+   ────────────────────── */
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
