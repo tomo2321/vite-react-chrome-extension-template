@@ -67,6 +67,7 @@ export const features = {
   side_panel: true,
   options: true,
   devtools: true,
+  chrome_url_overrides: true,
 };
 
 /**
@@ -172,6 +173,20 @@ export default defineManifest((env) => ({
   // Only include `devtools_page` if the feature flag is enabled
   ...(features.devtools && {
     devtools_page: "src/pages/devtools/index.html",
+  }),
+  // Only include `chrome_url_overrides` if the feature flag is enabled.
+  // Extensions can override one of the following Chrome pages, but each extension can only
+  // override ONE page at a time — do not define more than one key here:
+  //
+  //   bookmarks : Replaces chrome://bookmarks (Bookmark Manager)
+  //   history   : Replaces chrome://history   (History page)
+  //   newtab    : Replaces chrome://newtab     (New Tab page)
+  //
+  // @see https://developer.chrome.com/docs/extensions/develop/ui/override-chrome-pages
+  ...(features.chrome_url_overrides && {
+    chrome_url_overrides: {
+      newtab: "src/pages/chrome-url-overrides/index.html",
+    },
   }),
   permissions,
   // Only include `host_permissions` in development to allow HMR via the Vite dev server.
