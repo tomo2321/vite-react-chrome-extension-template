@@ -9,14 +9,14 @@ function App() {
   return (
     <div className="w-full min-h-screen flex flex-col items-center justify-center p-8 text-center">
       <div className="flex justify-center">
-        <a href="https://vite.dev" target="_blank">
+        <a href="https://vite.dev" target="_blank" rel="noopener">
           <img
             src={viteLogo}
             className="h-[6em] p-[1.5em] will-change-[filter] [transition:filter_300ms] hover:filter-[drop-shadow(0_0_2em_#646cffaa)]"
             alt="Vite logo"
           />
         </a>
-        <a href="https://react.dev" target="_blank">
+        <a href="https://react.dev" target="_blank" rel="noopener">
           <img
             src={reactLogo}
             className="h-[6em] p-[1.5em] will-change-[filter] [transition:filter_300ms] hover:filter-[drop-shadow(0_0_2em_#61dafbaa)] motion-safe:animate-[logo-spin_20s_linear_infinite]"
@@ -26,7 +26,7 @@ function App() {
       </div>
       <h1>Chrome URL Overrides</h1>
       <div className="p-[2em]">
-        <button onClick={() => setCount((count) => count + 1)}>
+        <button type="button" onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
         <p>

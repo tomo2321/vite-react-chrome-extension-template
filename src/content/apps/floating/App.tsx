@@ -68,9 +68,10 @@ function App() {
       }
     >
       {/* Header / drag handle */}
-      <div className="header" onMouseDown={onMouseDown}>
+      <div role="toolbar" className="header" onMouseDown={onMouseDown}>
         <span className="header-title">Content Script: Floating App</span>
         <button
+          type="button"
           className="close-button"
           onClick={() => setVisible(false)}
           title="Close"
@@ -94,6 +95,7 @@ function App() {
 
         <div className="card">
           <button
+            type="button"
             className="count-button"
             onClick={() => setCount((count) => count + 1)}
           >

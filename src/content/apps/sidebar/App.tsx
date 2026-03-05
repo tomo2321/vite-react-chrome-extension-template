@@ -79,12 +79,14 @@ function App() {
     <>
       {/* Toggle tab — always visible on the right edge */}
       <button
+        type="button"
         onClick={() => setOpen((o) => !o)}
         style={{ right: open ? `${width}px` : "0" }}
         className="fixed top-1/2 -translate-y-1/2 z-2147483647 w-5 h-16 bg-[#242424] border border-white/10 border-r-0 rounded-l-lg flex items-center justify-center text-white/60 hover:text-white hover:bg-[#2e2e2e] transition-[right,background-color] duration-250 ease cursor-pointer shadow-lg"
         aria-label={open ? "Close sidebar" : "Open sidebar"}
       >
         <svg
+          aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
           className="w-3 h-3"
           viewBox="0 0 24 24"
@@ -109,10 +111,15 @@ function App() {
           className="fixed top-0 right-0 h-full bg-[#242424] text-white shadow-2xl flex flex-col z-2147483646 font-sans"
         >
           {/* Resize handle — left edge */}
-          {/* biome-ignore lint/a11y/useKeyWithMouseEvents: resize handle */}
-          <div
+          <hr
+            tabIndex={0}
+            aria-orientation="vertical"
+            aria-valuenow={width}
+            aria-valuemin={MIN_WIDTH}
+            aria-valuemax={MAX_WIDTH}
+            aria-label="Drag to resize"
             onMouseDown={onResizeStart}
-            className="absolute top-0 left-0 w-1 h-full cursor-ew-resize hover:bg-indigo-500/60 active:bg-indigo-400/80 transition-colors z-10"
+            className="absolute top-0 left-0 w-1 h-full cursor-ew-resize hover:bg-indigo-500/60 active:bg-indigo-400/80 transition-colors z-10 border-0 m-0 p-0"
             title="Drag to resize"
           />
           {/* Header */}
@@ -148,6 +155,7 @@ function App() {
             {/* Card */}
             <div className="w-full rounded-xl bg-white/5 border border-white/10 p-5 flex flex-col items-center gap-3">
               <button
+                type="button"
                 onClick={() => setCount((count) => count + 1)}
                 className="px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700 text-white text-sm font-medium transition-colors cursor-pointer"
               >

@@ -11,16 +11,16 @@ function Home() {
   return (
     <>
       <div>
-        <a href="https://vite.dev" target="_blank">
+        <a href="https://vite.dev" target="_blank" rel="noopener">
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>
-        <a href="https://react.dev" target="_blank">
+        <a href="https://react.dev" target="_blank" rel="noopener">
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
       <h1>Side Panel</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
+        <button type="button" onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
         <p>
@@ -32,7 +32,9 @@ function Home() {
         Click on the Vite and React logos to learn more
       </p>
       <div className="card">
-        <button onClick={() => navigate("/detail")}>Go to Detail</button>
+        <button type="button" onClick={() => navigate("/detail")}>
+          Go to Detail
+        </button>
       </div>
     </>
   );

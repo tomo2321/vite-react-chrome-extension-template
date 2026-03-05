@@ -5,7 +5,7 @@ import { createRoot } from "react-dom/client";
 // to avoid preflight style conflicts with pages that still rely on shared/index.css.
 import App from "./App.tsx";
 
-createRoot(document.getElementById("root")!).render(
+createRoot(document.getElementById("root") as HTMLElement).render(
   <StrictMode>
     <App />
   </StrictMode>,

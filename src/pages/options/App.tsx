@@ -33,18 +33,22 @@ function App() {
   return (
     <>
       <div>
-        <a href="https://vite.dev" target="_blank">
+        <a href="https://vite.dev" target="_blank" rel="noopener">
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>
-        <a href="https://react.dev" target="_blank">
+        <a href="https://react.dev" target="_blank" rel="noopener">
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
       <h1>Options</h1>
       <div className="card">
         <div className="button-group">
-          <button onClick={increment}>count is {count}</button>
-          <button onClick={reset}>reset</button>
+          <button type="button" onClick={increment}>
+            count is {count}
+          </button>
+          <button type="button" onClick={reset}>
+            reset
+          </button>
         </div>
         <p>
           Edit <code>src/pages/options/App.tsx</code> and save to test HMR

@@ -5,7 +5,7 @@
   "formatter": { "enabled": true, "indentStyle": "space" },
   "linter": {
     "enabled": true,
-    "rules": { "recommended": false },
+    "rules": { "recommended": true },
     "includes": ["**", "!dist"]
   },
   "javascript": { "formatter": { "quoteStyle": "double" } },

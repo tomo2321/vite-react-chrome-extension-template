@@ -12,7 +12,9 @@ function Detail() {
         HMR
       </p>
       <div className="card">
-        <button onClick={() => navigate("/")}>Back to Home</button>
+        <button type="button" onClick={() => navigate("/")}>
+          Back to Home
+        </button>
       </div>
     </>
   );
