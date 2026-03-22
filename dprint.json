@@ -6,6 +6,7 @@
   "yaml": {},
   "excludes": [
     "**/node_modules",
+    "**/dist",
     "**/*lock.json",
     "**/*lock.yml",
     "**/*lock.yaml"
