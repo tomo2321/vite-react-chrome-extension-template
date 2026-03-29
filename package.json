@@ -20,8 +20,13 @@
   "keywords": [
     "vite",
     "react",
-    "chrome extension",
-    "template"
+    "typescript",
+    "chrome-extension",
+    "browser-extension",
+    "tailwindcss",
+    "template",
+    "boilerplate",
+    "crxjs"
   ],
   "author": "author",
   "packageManager": "pnpm@10.30.3",
