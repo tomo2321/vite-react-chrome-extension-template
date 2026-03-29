@@ -33,7 +33,6 @@
   "devDependencies": {
     "@biomejs/biome": "^2.4.4",
     "@crxjs/vite-plugin": "^2.3.0",
-    "@dprint/biome": "^0.12.3",
     "@dprint/json": "^0.21.1",
     "@dprint/markdown": "^0.21.1",
     "@dprint/typescript": "^0.95.15",

@@ -24,9 +24,6 @@ importers:
       '@crxjs/vite-plugin':
         specifier: ^2.3.0
         version: 2.3.0
-      '@dprint/biome':
-        specifier: ^0.12.3
-        version: 0.12.3
       '@dprint/json':
         specifier: ^0.21.1
         version: 0.21.1
@@ -232,9 +229,6 @@ packages:
 
   '@crxjs/vite-plugin@2.3.0':
     resolution: {integrity: sha512-+0CNVGS4bB30OoaF1vUsHVwWU1Lm7MxI0XWY9Fd/Ob+ZVTZgEFNqJ1ZC69IVwQsoYhY0sMQLvpLWiFIuDz8htg==}
-
-  '@dprint/biome@0.12.3':
-    resolution: {integrity: sha512-x/zWUpxryZ6IbOwy2zPXC6MJ1UsnchZ4seXEpGB967fWSCLC4izoqtfwnr4beKCFgPG172Ys70wGR13mfdNiPg==}
 
   '@dprint/darwin-arm64@0.53.0':
     resolution: {integrity: sha512-ks9Y6koRRHWQOGIXuAUTZt5QkbR8uRVYvj80SKbjZTBYWaazjgPBbzYjnsz5qD6K/ALAqjfGFj5pAx8hgpkxeQ==}
@@ -1941,8 +1935,6 @@ snapshots:
       rxjs: 7.5.7
     transitivePeerDependencies:
       - supports-color
-
-  '@dprint/biome@0.12.3': {}
 
   '@dprint/darwin-arm64@0.53.0':
     optional: true

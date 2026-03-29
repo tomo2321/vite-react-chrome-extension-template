@@ -2,20 +2,19 @@
   "typescript": {},
   "json": {},
   "markdown": {},
-  "biome": {},
   "yaml": {},
   "excludes": [
     "**/node_modules",
     "**/dist",
     "**/*lock.json",
     "**/*lock.yml",
-    "**/*lock.yaml"
+    "**/*lock.yaml",
+    "**/*.{ts,tsx,js,jsx,mts,cts,json,jsonc,css}"
   ],
   "plugins": [
     "./node_modules/@dprint/typescript/plugin.wasm",
     "./node_modules/@dprint/json/plugin.wasm",
     "./node_modules/@dprint/markdown/plugin.wasm",
-    "./node_modules/@dprint/biome/plugin.wasm",
     "https://plugins.dprint.dev/g-plane/pretty_yaml-v0.6.0.wasm"
   ]
 }
