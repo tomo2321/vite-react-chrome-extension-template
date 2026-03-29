@@ -1,77 +1,64 @@
-# React + TypeScript + Vite
+# Vite + React Chrome Extension Template
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A batteries-included template for building Chrome extensions with **Vite**, **React 19**,
+**TypeScript**, and **Tailwind CSS v4**.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **TypeScript manifest** — define your `manifest.json` in TypeScript with full type safety
+- **Feature flags** — enable or disable popup, background service worker, content scripts, side
+  panel, options page, DevTools panel, and URL overrides from a single object
+- **HMR in content scripts and extension pages** — powered by [CRXJS](https://crxjs.dev/vite-plugin)
+- **Tailwind CSS v4** — utility-first CSS available in all pages and content scripts
+- **In-page routing** — side panel uses `MemoryRouter` from React Router v7
+- **Icon generator** — CLI script to generate PNG icons from text labels
+- **Biome + dprint** — fast linting and formatting with pre-commit hooks via Husky
 
-## React Compiler
+## Included Examples
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+| Component            | Location                          | Demonstrates                              |
+| -------------------- | --------------------------------- | ----------------------------------------- |
+| Popup                | `src/pages/popup/`                | Basic browser action popup                |
+| Options              | `src/pages/options/`              | Settings page with `chrome.storage.local` |
+| Side Panel           | `src/pages/sidepanel/`            | In-panel routing with MemoryRouter        |
+| DevTools Panel       | `src/pages/devtools/`             | Custom DevTools panel                     |
+| New Tab Override     | `src/pages/chrome-url-overrides/` | Replaces Chrome's new tab page            |
+| Background Worker    | `src/background/`                 | Service worker with `onInstalled` handler |
+| Plain Content Script | `src/content/example.com/`        | Script injected into example.com          |
+| Floating Widget      | `src/content/apps/floating/`      | Draggable React overlay on Yahoo Japan    |
+| Sidebar App          | `src/content/apps/sidebar/`       | Resizable React sidebar on Google         |
 
-## Expanding the ESLint configuration
+## Quick Start
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+```bash
+# 1. Install tool versions (Node.js + pnpm)
+mise install
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+# 2. Install dependencies
+pnpm install
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# 3. Start dev server
+pnpm dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Then open `chrome://extensions`, enable **Developer mode**, click **Load unpacked**, and select
+the `dist/` folder.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Documentation
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- [Getting started](docs/getting-started.md) — setup, dev server, production build
+- [Project structure](docs/project-structure.md) — directory layout and conventions
+- [Manifest and feature flags](docs/manifest-and-features.md) — configure the extension manifest
+- [Content scripts](docs/content-scripts.md) — add scripts injected into web pages
+- [Extension pages](docs/pages.md) — popup, options, side panel, DevTools, URL overrides
+- [Icons](docs/icons.md) — generate PNG icons with the built-in script
+- [Development guide](docs/development.md) — scripts, toolchain, build output
+
+## For AI Coding Agents
+
+See [AGENTS.md](AGENTS.md) for instructions tailored to AI coding agents building Chrome
+extensions with this template.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
