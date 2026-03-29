@@ -13,11 +13,8 @@ export default defineConfig({
         // CRXJS auto-detects HTML entry points listed in the manifest, but
         // HTML files referenced dynamically via `chrome.devtools.panels.create()`
         // are NOT picked up automatically and will result in a blank panel.
-        //
-        // Action: Whenever you add a new DevTools panel, register its HTML here
-        // as an explicit Rollup entry so it gets bundled correctly.
-        // The key (e.g. "devtools_panel") is an arbitrary chunk name used by
-        // Rollup for the output filename — it can be any unique string.
+        // Register each DevTools panel HTML as an explicit Rollup entry.
+        // The key is an arbitrary chunk name used by Rollup for the output filename.
         //   e.g. my_panel: "src/pages/devtools/my-panel/index.html",
         ...(features.devtools && {
           devtools_panel: "src/pages/devtools/panel/index.html",

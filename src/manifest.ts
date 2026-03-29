@@ -58,7 +58,7 @@ export const runAt = {
 
 /**
  * Feature flags to control which optional sections are included in the manifest.
- * Set each flag to `true` to include the section, or `false` to omit it.
+ * Set each flag to `false` to omit a section from the built extension.
  */
 export const features = {
   action: true,
@@ -95,28 +95,23 @@ export default defineManifest((env) => ({
   version: "0.0.0",
   // Only include `icons` if at least one icon file exists in public/icons/
   ...(Object.keys(appIcons).length > 0 && { icons: appIcons }),
-  // Only include `action` if the feature flag is enabled
   ...(features.action && {
     action: {
-      // Only include `default_icon` if at least one action icon file exists in public/icons/
       ...(Object.keys(actionIcons).length > 0 && { default_icon: actionIcons }),
       default_popup: "src/pages/popup/index.html",
     },
   }),
-  // Only include `background` if the feature flag is enabled
   ...(features.background && {
     background: {
       service_worker: "src/background/index.ts",
       type: "module",
     },
   }),
-  // Only include `content_scripts` if the feature flag is enabled
   ...(features.content_scripts && {
     content_scripts: [
       {
         matches: ["https://example.com/*"],
         js: ["src/content/example.com/index.ts"],
-        // Change `run_at` to `runAt.document_start` or `runAt.document_end` if earlier injection is needed.
         run_at: runAt.document_idle,
         // No `css` key needed: CRXJS automatically injects CSS imported in the JS file (e.g. `import "./style.css"`).
         // Listing CSS here separately causes a "Could not load css" error.
@@ -157,24 +152,20 @@ export default defineManifest((env) => ({
       },
     ],
   }),
-  // Only include `side_panel` if the feature flag is enabled
   ...(features.side_panel && {
     side_panel: {
       default_path: "src/pages/sidepanel/index.html",
     },
   }),
-  // Only include `options_ui` if the feature flag is enabled
   ...(features.options && {
     options_ui: {
       page: "src/pages/options/index.html",
       open_in_tab: false,
     },
   }),
-  // Only include `devtools_page` if the feature flag is enabled
   ...(features.devtools && {
     devtools_page: "src/pages/devtools/index.html",
   }),
-  // Only include `chrome_url_overrides` if the feature flag is enabled.
   // Extensions can override one of the following Chrome pages, but each extension can only
   // override ONE page at a time — do not define more than one key here:
   //
