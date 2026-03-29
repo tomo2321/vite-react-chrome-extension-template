@@ -76,8 +76,10 @@ The built extension is output to `dist/`. Zip that folder for submission to the 
 
 The template ships with sample code for every feature. Replace or delete what you don't need:
 
-| Sample file / directory            | What to do                                           |
+| File / directory                   | What to do                                           |
 | ---------------------------------- | ---------------------------------------------------- |
+| `AGENTS.md`                        | Delete — this is for template contributors           |
+| `AGENTS.new-project.md`            | Rename to `AGENTS.md` — your extension's agent guide |
 | `src/content/example.com/`         | Replace with your target site and script logic       |
 | `src/content/apps/floating/`       | Replace or delete — sample draggable React widget    |
 | `src/content/apps/sidebar/`        | Replace or delete — sample resizable sidebar         |
@@ -87,6 +89,12 @@ The template ships with sample code for every feature. Replace or delete what yo
 | `src/pages/devtools/panel/App.tsx` | Replace contents with your DevTools panel UI         |
 | `src/pages/chrome-url-overrides/`  | Replace contents with your new tab UI                |
 | `src/background/index.ts`          | Replace the sample `onInstalled` handler             |
+
+```bash
+# Swap the AGENTS.md files
+rm AGENTS.md
+mv AGENTS.new-project.md AGENTS.md
+```
 
 When you remove a content script directory, also remove its entry from `content_scripts` in
 `src/manifest.ts`.

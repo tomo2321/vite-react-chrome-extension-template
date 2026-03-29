@@ -56,8 +56,15 @@ the `dist/` folder.
 
 ## For AI Coding Agents
 
-See [AGENTS.md](AGENTS.md) for instructions tailored to AI coding agents building Chrome
-extensions with this template.
+`AGENTS.new-project.md` is the `AGENTS.md` for new projects created from this template.
+After setting up your extension, swap the files:
+
+```bash
+rm AGENTS.md
+mv AGENTS.new-project.md AGENTS.md
+```
+
+See [docs/getting-started.md](docs/getting-started.md) for the full setup checklist.
 
 ## License
 
