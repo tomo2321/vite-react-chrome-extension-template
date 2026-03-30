@@ -13,3 +13,4 @@
 | Persistent storage         | [storage.md](storage.md)                             |
 | Generate icons             | [icons.md](icons.md)                                 |
 | Build, lint, format        | [development.md](development.md)                     |
+| Testing                    | [testing.md](testing.md)                             |

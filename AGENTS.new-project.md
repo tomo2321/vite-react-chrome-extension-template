@@ -36,30 +36,11 @@ pnpm build-storybook  # Build static Storybook → storybook-static/
 
 ## Testing
 
-### Unit & component tests
+See [docs/testing.md](docs/testing.md) for full details. Key points:
 
-- Run with `pnpm test` or `pnpm test:watch`
-- Setup file: `src/test/setup.ts` — installs jest-dom matchers + `chrome.*` API mock
-- Chrome mock: `src/test/chrome-mock.ts` — use `vi.mocked(chrome.storage.local.get).mockImplementation(...)` to override in tests
-
-### Coverage
-
-- Run with `pnpm test:coverage` — output in `coverage/`
-- `coverage/coverage-summary.json` — machine-readable totals
-- `coverage/coverage-final.json` — line-level detail per file
-
-### Snapshot tests
-
-Each component has a co-located `App.snapshot.test.tsx`. Update after intentional UI changes:
-
-```bash
-pnpm vitest run -u --project=unit
-```
-
-### Storybook story tests
-
-- Each `*.stories.tsx` is run as a browser test in headless Chromium
-- Run with `pnpm test:storybook`
+- Chrome mock: `src/test/chrome-mock.ts` — use `vi.mocked(chrome.*)` to override in tests; mocks reset before each test automatically
+- Coverage files: `coverage/coverage-summary.json` (totals) and `coverage/coverage-final.json` (line-level)
+- Update snapshots after intentional UI changes: `pnpm vitest run -u --project=unit`
 
 ## Code Style
 
