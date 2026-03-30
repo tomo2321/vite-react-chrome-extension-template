@@ -13,6 +13,8 @@ A batteries-included template for building Chrome extensions with **Vite**, **Re
 - **In-page routing** — side panel uses `MemoryRouter` from React Router v7
 - **Icon generator** — CLI script to generate PNG icons from text labels
 - **Biome + dprint** — fast linting and formatting with pre-commit hooks via Husky
+- **Vitest** — unit and component tests with jsdom, 100% coverage on all example components
+- **Storybook 10** — component development and browser-based story tests via Playwright
 
 ## Included Examples
 
@@ -34,8 +36,8 @@ A batteries-included template for building Chrome extensions with **Vite**, **Re
 # 1. Install tool versions (Node.js + pnpm)
 mise install
 
-# 2. Install dependencies
-pnpm install
+# 2. Install dependencies + Playwright browser for Storybook tests
+pnpm setup
 
 # 3. Start dev server
 pnpm dev
@@ -43,6 +45,25 @@ pnpm dev
 
 Then open `chrome://extensions`, enable **Developer mode**, click **Load unpacked**, and select
 the `dist/` folder.
+
+## Testing
+
+```bash
+pnpm test              # Run all tests (unit + Storybook browser)
+pnpm test:coverage     # Unit tests with coverage report
+pnpm test:storybook    # Storybook story tests only (headless Chromium)
+pnpm storybook         # Start Storybook dev server on :6006
+```
+
+All example components ship with:
+
+- **Unit tests** — behaviour and interaction (`App.test.tsx`)
+- **Snapshot tests** — DOM regression (`App.snapshot.test.tsx`)
+- **Stories** — component workshop + browser-based smoke/interaction tests (`App.stories.tsx`)
+
+Coverage is reported to `coverage/coverage-summary.json` (machine-readable) and `coverage/index.html`
+(interactive). Update snapshots after intentional UI changes with
+`pnpm vitest run -u --project=unit`.
 
 ## Documentation
 
