@@ -1,0 +1,87 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`renders the floating app snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="widget"
+    style="--x: 684px; --y: 20px;"
+  >
+    <div
+      class="header"
+      role="toolbar"
+    >
+      <span
+        class="header-title"
+      >
+        Content Script: Floating App
+      </span>
+      <button
+        class="close-button"
+        title="Close"
+        type="button"
+      >
+        ×
+      </button>
+    </div>
+    <div
+      class="body"
+    >
+      <div
+        class="logos"
+      >
+        <a
+          href="https://vite.dev"
+          rel="noreferrer"
+          target="_blank"
+        >
+          <img
+            alt="Vite logo"
+            class="logo"
+            src="chrome-extension://test-extension-id/vite.svg"
+          />
+        </a>
+        <a
+          href="https://react.dev"
+          rel="noreferrer"
+          target="_blank"
+        >
+          <img
+            alt="React logo"
+            class="logo logo-react"
+            src="chrome-extension://test-extension-id/src/assets/react.svg"
+          />
+        </a>
+      </div>
+      <h1
+        class="title"
+      >
+        Floating
+      </h1>
+      <div
+        class="card"
+      >
+        <button
+          class="count-button"
+          type="button"
+        >
+          count is 0
+        </button>
+        <p
+          class="hint"
+        >
+          Edit 
+          <code>
+            src/content/apps/floating/App.tsx
+          </code>
+           and save to test HMR
+        </p>
+      </div>
+      <p
+        class="read-the-docs"
+      >
+        Click on the Vite and React logos to learn more
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
