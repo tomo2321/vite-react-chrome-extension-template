@@ -55,6 +55,8 @@ export default mergeConfig(
             environment: "jsdom",
             setupFiles: ["./src/test/setup.ts"],
             include: ["src/**/*.test.{ts,tsx}"],
+            // Node 25+ ships a global localStorage that shadows jsdom's
+            execArgv: ["--no-experimental-webstorage"],
           },
         }),
         // Storybook story tests (real browser via Playwright)

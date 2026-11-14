@@ -1,2 +1,4 @@
-ignoredBuiltDependencies:
-  - sharp
+allowBuilds:
+  dprint: false
+  esbuild: false
+  sharp: false
