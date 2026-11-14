@@ -16,11 +16,10 @@ const config: StorybookConfig = {
   viteFinal(config) {
     // Remove the CRXJS Chrome extension plugin — it is incompatible with
     // Storybook's builder and must not run outside of an extension build.
-    const filtered = (config.plugins ?? []).filter((plugin) => {
-      if (!plugin || typeof plugin !== "object" || Array.isArray(plugin))
-        return true;
+    const filtered = (config.plugins ?? []).flat(Infinity).filter((plugin) => {
+      if (!plugin || typeof plugin !== "object") return true;
       const p = plugin as { name?: string };
-      return p.name !== "crx";
+      return !p.name?.startsWith("crx");
     });
     return {
       ...config,
