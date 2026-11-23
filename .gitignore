@@ -28,3 +28,12 @@ coverage
 
 # Storybook
 storybook-static
+
+# Generated MCP configs (source: mcp-servers.json, run `pnpm mcp:sync`)
+mcp-servers.local.json
+.mcp.json
+.cursor/
+.vscode/mcp.json
+.gemini/
+.codex/
+opencode.json

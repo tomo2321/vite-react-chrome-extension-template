@@ -21,9 +21,10 @@
     "lint:md": "markdownlint-cli2 '**/*.md'",
     "fmt": "dprint fmt",
     "format:md": "dprint fmt '**/*.md'",
-    "prepare": "husky",
+    "prepare": "husky && tsx scripts/sync-mcp.ts --quiet",
     "setup": "pnpm install && pnpm exec playwright install chromium",
-    "generate-icon": "tsx scripts/generate-icon.ts"
+    "generate-icon": "tsx scripts/generate-icon.ts",
+    "mcp:sync": "tsx scripts/sync-mcp.ts"
   },
   "keywords": [
     "vite",
@@ -51,6 +52,7 @@
     "@dprint/typescript": "^0.100.0",
     "@storybook/addon-a11y": "^10.6.7",
     "@storybook/addon-docs": "^10.6.7",
+    "@storybook/addon-mcp": "^10.6.7",
     "@storybook/addon-onboarding": "^10.6.7",
     "@storybook/addon-vitest": "^10.6.7",
     "@storybook/react": "^10.6.7",
@@ -76,6 +78,7 @@
     "markdownlint-cli2": "^0.24.1",
     "playwright": "^1.65.0",
     "sharp": "^0.35.5",
+    "smol-toml": "^1.9.1",
     "storybook": "^10.6.7",
     "tailwindcss": "^4.3.5",
     "tsx": "^4.23.15",
@@ -93,6 +96,9 @@
     ],
     "*.{yml,yaml}": [
       "dprint fmt --allow-no-files"
+    ],
+    "mcp-servers.json": [
+      "tsx scripts/sync-mcp.ts --quiet"
     ]
   },
   "engines": {

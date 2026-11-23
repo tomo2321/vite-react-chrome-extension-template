@@ -54,7 +54,7 @@ export default mergeConfig(
             globals: true,
             environment: "jsdom",
             setupFiles: ["./src/test/setup.ts"],
-            include: ["src/**/*.test.{ts,tsx}"],
+            include: ["src/**/*.test.{ts,tsx}", "scripts/**/*.test.ts"],
             // Node 25+ ships a global localStorage that shadows jsdom's
             execArgv: ["--no-experimental-webstorage"],
           },

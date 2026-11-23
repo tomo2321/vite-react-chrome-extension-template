@@ -1,0 +1,1 @@
+pnpm exec tsx scripts/sync-mcp.ts --quiet || true

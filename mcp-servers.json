@@ -1,0 +1,61 @@
+{
+  "servers": {
+    "chrome-devtools": {
+      "description": "Drive and inspect a real Chrome: console, network, DOM, performance",
+      "command": "npx",
+      "args": ["-y", "chrome-devtools-mcp@latest"]
+    },
+    "playwright": {
+      "description": "Browser automation through the accessibility tree",
+      "command": "npx",
+      "args": ["-y", "@playwright/mcp@latest"]
+    },
+    "context7": {
+      "description": "Up-to-date library documentation (Vite, React, CRXJS, Tailwind, ...)",
+      "url": "https://mcp.context7.com/mcp"
+    },
+    "storybook": {
+      "description": "Components and stories from @storybook/addon-mcp (requires `pnpm storybook`)",
+      "url": "http://localhost:6006/mcp"
+    },
+    "sequential-thinking": {
+      "description": "Structured step-by-step reasoning",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"]
+    },
+    "git": {
+      "description": "Git repository operations (requires uv, provisioned by mise)",
+      "command": "uvx",
+      "args": ["mcp-server-git", "--repository", "."]
+    },
+    "fetch": {
+      "description": "Fetch a URL and convert it to Markdown (requires uv, provisioned by mise)",
+      "command": "uvx",
+      "args": ["mcp-server-fetch"]
+    },
+    "github": {
+      "description": "GitHub issues, PRs and code (requires GITHUB_PERSONAL_ACCESS_TOKEN, see docs/mcp.md)",
+      "url": "https://api.githubcopilot.com/mcp/",
+      "headers": {
+        "Authorization": "Bearer ${env:GITHUB_PERSONAL_ACCESS_TOKEN}"
+      }
+    },
+    "figma": {
+      "description": "Figma designs and Dev Mode context (OAuth sign-in in each agent)",
+      "enabled": false,
+      "url": "https://mcp.figma.com/mcp"
+    },
+    "browsermcp": {
+      "description": "Automate your own Chrome profile (requires the Browser MCP extension)",
+      "enabled": false,
+      "command": "npx",
+      "args": ["-y", "@browsermcp/mcp@latest"]
+    },
+    "snyk": {
+      "description": "Vulnerability scanning for dependencies and code (requires the Snyk CLI and `snyk auth`)",
+      "enabled": false,
+      "command": "snyk",
+      "args": ["mcp", "-t", "stdio"]
+    }
+  }
+}
