@@ -6,7 +6,7 @@ This file is for contributors developing the template itself.
 ## Setup
 
 ```bash
-mise install                           # Provision Node.js and pnpm versions
+mise install                           # Provision Node.js, pnpm and uv versions
 pnpm install                           # Install dependencies
 pnpm exec playwright install chromium  # Install Chromium for Storybook/Vitest browser tests
 ```
@@ -32,6 +32,7 @@ pnpm test:coverage    # Run unit tests with v8 coverage report
 pnpm test:storybook   # Run Storybook story tests only (real Chromium)
 pnpm storybook        # Start Storybook dev server on port 6006
 pnpm build-storybook  # Build static Storybook → storybook-static/
+pnpm mcp:sync         # Regenerate agent MCP configs from mcp-servers.json
 ```
 
 ## Testing
@@ -59,6 +60,16 @@ Each component has a co-located `App.snapshot.test.tsx`. To update snapshots aft
 ```bash
 pnpm vitest run -u --project=unit
 ```
+
+## MCP Servers
+
+MCP servers are defined once in `mcp-servers.json`. `pnpm mcp:sync` generates the per-agent configs
+(`.mcp.json`, `.cursor/mcp.json`, `.vscode/mcp.json`, `.gemini/settings.json`, `.codex/config.toml`,
+`opencode.json`). It runs automatically on `pnpm install` and after `git checkout` / `git merge`.
+
+- Never edit the generated files' MCP sections — edit `mcp-servers.json` and run `pnpm mcp:sync`
+- Personal overrides go in the git-ignored `mcp-servers.local.json`
+- See [docs/mcp.md](docs/mcp.md)
 
 ## Code Style
 

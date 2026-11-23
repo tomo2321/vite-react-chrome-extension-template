@@ -33,7 +33,7 @@ A batteries-included template for building Chrome extensions with **Vite**, **Re
 ## Quick Start
 
 ```bash
-# 1. Install tool versions (Node.js + pnpm)
+# 1. Install tool versions (Node.js + pnpm + uv)
 mise install
 
 # 2. Install dependencies + Playwright browser for Storybook tests
@@ -74,6 +74,7 @@ Coverage is reported to `coverage/coverage-summary.json` (machine-readable) and 
 - [Extension pages](docs/pages.md) — popup, options, side panel, DevTools, URL overrides
 - [Icons](docs/icons.md) — generate PNG icons with the built-in script
 - [Development guide](docs/development.md) — scripts, toolchain, build output
+- [MCP servers](docs/mcp.md) — shared MCP config for Claude Code, Cursor, VS Code, Codex, Gemini, OpenCode
 
 ## For AI Coding Agents
 
@@ -84,6 +85,10 @@ After setting up your extension, swap the files:
 rm AGENTS.md
 mv AGENTS.new-project.md AGENTS.md
 ```
+
+MCP servers (Chrome DevTools, Playwright, Context7, Storybook and more) are defined once in
+`mcp-servers.json`. `pnpm install` generates the config file for each agent; all generated files
+are git-ignored. See [docs/mcp.md](docs/mcp.md).
 
 See [docs/getting-started.md](docs/getting-started.md) for the full setup checklist.
 

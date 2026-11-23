@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-- [mise](https://mise.jdx.dev/) (manages Node.js and pnpm versions automatically)
+- [mise](https://mise.jdx.dev/) (manages Node.js, pnpm and uv versions automatically)
 
 Install the correct tool versions:
 
@@ -10,7 +10,7 @@ Install the correct tool versions:
 mise install
 ```
 
-This provisions the exact Node.js and pnpm versions declared in `mise.toml`.
+This provisions the exact Node.js, pnpm and uv versions declared in `mise.toml`.
 
 ## Create Your Extension from This Template
 
@@ -31,6 +31,10 @@ This provisions the exact Node.js and pnpm versions declared in `mise.toml`.
    ```
 
 3. **Update `package.json`** — set `name`, `description`, and `author` for your extension.
+
+   This also generates the MCP configs for your AI coding agents. The `github` MCP server needs a
+   `GITHUB_PERSONAL_ACCESS_TOKEN` environment variable holding a fine-grained PAT with an expiry —
+   see [mcp.md](mcp.md#github).
 
 4. **Update `src/manifest.ts`** — set `name`, `description`, and `version` inside `defineManifest`.
 

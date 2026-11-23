@@ -14,3 +14,4 @@
 | Generate icons             | [icons.md](icons.md)                                 |
 | Build, lint, format        | [development.md](development.md)                     |
 | Testing                    | [testing.md](testing.md)                             |
+| MCP servers for AI agents  | [mcp.md](mcp.md)                                     |

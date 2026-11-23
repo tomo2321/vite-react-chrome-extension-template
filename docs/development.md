@@ -13,6 +13,7 @@
 | `pnpm fmt`           | Format all files with dprint                           |
 | `pnpm format:md`     | Format Markdown files with dprint                      |
 | `pnpm generate-icon` | Generate PNG icon from text (see [icons.md](icons.md)) |
+| `pnpm mcp:sync`      | Generate agent MCP configs (see [mcp.md](mcp.md))      |
 
 ## Toolchain
 
@@ -26,7 +27,7 @@
 | [Biome](https://biomejs.dev)                                                                           | Linting and formatting (JS/TS/JSON/CSS)    |
 | [dprint](https://dprint.dev)                                                                           | Formatting for Markdown and YAML           |
 | [Husky](https://typicode.github.io/husky/) + [lint-staged](https://github.com/lint-staged/lint-staged) | Pre-commit hooks                           |
-| [mise](https://mise.jdx.dev/)                                                                          | Node.js and pnpm version management        |
+| [mise](https://mise.jdx.dev/)                                                                          | Node.js, pnpm and uv version management    |
 
 ## Pre-commit Hooks
 
@@ -35,6 +36,11 @@ Husky runs lint-staged on every commit:
 - **JS/TS/JSON/CSS** — `biome check --write` (lint + format)
 - **Markdown** — `markdownlint-cli2 --fix` then `dprint fmt`
 - **YAML** — `dprint fmt`
+- **`mcp-servers.json`** — `pnpm mcp:sync` (regenerates agent MCP configs)
+
+Husky also runs `pnpm mcp:sync` after `git checkout` and `git merge` (`post-checkout` and
+`post-merge` hooks), so the generated MCP configs follow the branch you are on. See
+[mcp.md](mcp.md).
 
 ## Vite Dev Server
 
